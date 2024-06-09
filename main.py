@@ -22,6 +22,7 @@ symbol_value = {
 }
 
 
+
 def check_winnings(columns, lines, bet, values):
     winnings = 0
     winning_lines = []
@@ -112,11 +113,13 @@ def get_bet():
         else:
                  print("Please enter a number")
          
-        return amount     
+        return amount   
 
+lines = get_number_of_lines()   
+bet = get_bet()
+total_bet = bet * lines
 
 def spin(balance):
- lines = get_number_of_lines()
  while True:
       bet = get_bet()
       total_bet = bet * lines
@@ -126,8 +129,7 @@ def spin(balance):
              f"You have insufficient funds for this bet, your current balance is: ${balance}")
       else:
         break
-print(
-     f"You are betting ${get_bet} on {get_number_of_lines} lines. Total Bet: ${total_bet}")
+      print(f"You are betting ${bet} on {lines} lines. Total Bet: ${total_bet}")
 
 
 slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
@@ -135,7 +137,8 @@ print_slot_machine(slots)
 winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
 print(f"You won ${winnings}.")
 print (f"You won on line:",*winning_lines)
-return winnings - total_bet
+
+winnings - total_bet
 
 def main():
  balance = deposit()
@@ -145,8 +148,7 @@ def main():
       if answer == "q":
            break
       balance += spin(balance)
-
-        print(f"You are left with ${balance}")
+      print(f"You are left with ${balance}")
 
 
 
